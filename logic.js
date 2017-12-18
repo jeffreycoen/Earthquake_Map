@@ -18,7 +18,7 @@ var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.ge
 
 // Grabbing the data with d3..
 d3.json(url, function(response) {
-  console.log(response);
+ // console.log(response);
 
   // Creating a new marker cluster group
   var markers = L.markerClusterGroup();
@@ -26,7 +26,8 @@ d3.json(url, function(response) {
   // Loop through our data...
   for (var i = 0; i < response.length; i++) {
     // set the data location property to a variable
-    var location = response[i].location;
+    var location = response[i].features.geometry.coordinates;
+    console.log(location)
 
     // If the data has a location property...
     if (location) {
