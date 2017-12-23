@@ -1,7 +1,16 @@
+
+
+
+
+
+
+
+
 // Inital Map Object
 var map = L.map("map", {
     center: [39.8283, -98.5785],
     zoom: 3
+    
 });
 
 // Adding Tile Layer
@@ -35,6 +44,7 @@ var queryURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 // API Call
 d3.json(queryURL, function(error, data) {
     if (error) console.log(error);
+    console.log(data)
 
     // console.log(data);
 
@@ -49,7 +59,7 @@ d3.json(queryURL, function(error, data) {
                 fillColor: chooseColor(feature.properties.mag),
                 radius: markerSize(feature.properties.mag)
             })
-            .bindPopup("<h1>" + feature.properties.place + "<h1> <hr> <h3>Magnitude: " + feature.properties.mag + "<h3>")
+            .bindPopup("<h1>" + feature.properties.place + "<h2> <hr> <h3>Magnitude: " + feature.properties.mag + "<h1>" + "<hr> <h1>" + feature.properties.time)
             .addTo(map);
 
         }
